@@ -176,7 +176,7 @@ var fm = (function ($) {
 				+	'<span class="revoprint_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + '">'
 							+ '<div class="revoprint_title">'
 							+	'<span class="">' + fm_options.title_label + '</span>'
 							+ '</div>'
