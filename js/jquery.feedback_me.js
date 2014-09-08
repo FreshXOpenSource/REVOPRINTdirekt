@@ -331,25 +331,30 @@ var fm = (function ($) {
 			}
 		}
 	}
-
+    
+	/*
 	function emailValid(str) {
 		var lastAtPos = str.lastIndexOf('@');
 		return (lastAtPos < (str.length - 1) && lastAtPos > 0 && str.indexOf('@@') === -1 && str.length > 2);
 	}
+	*/
 
 	function validateFeedbackForm(event, position) {
 		var $fm_content = $(event.target).closest(".feedback_content"),
 			fm_options = getFmOptions(event, position);
+		/*
 		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
 				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
 				(fm_options.message_required === true && $fm_content.find(".feedback_message").val() === "") ||
 				(fm_options.radio_button_list_required === true && $fm_content.find("input[name=feedback_radio]:checked").val() === undefined)) {
 			return false;
 		}
+		*/
 		return true;
 
 	}
 
+	/*
 	function checkPatternFieldsOk(event, position) {
 		var $patternFields = $("." + position + " [pattern]"),
 			form_valid = true,
@@ -391,6 +396,8 @@ var fm = (function ($) {
 		}
 	}
 
+    */
+
 	function appendFeedbackToBody(fm_options) {
 		var form_html = "",
 			iframe_html = "",
@@ -429,6 +436,7 @@ var fm = (function ($) {
 			jquery_class = "";
 		}
 
+	    /*
 		if (fm_options.jQueryUI === true) {
 			jquery_class = " fm_jquery ";
 			jQueryUIClasses1 = " ui-widget-header ui-corner-all ui-helper-clearfix ";
@@ -469,7 +477,7 @@ var fm = (function ($) {
 
 			radio_button_list_class = " radio_button_list_present";
 		}
-
+      
 		if (fm_options.show_email === true) {
 			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="email" class="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
 			email_feedback_content_class = " email_present";
@@ -490,6 +498,7 @@ var fm = (function ($) {
 				+	'</ul>'
 				+	'</form>';
 		}
+		*/
 		if (fm_options.iframe_url !== undefined) {
 			iframe_html = '<iframe name="feedback_me_frame" class="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
@@ -507,6 +516,7 @@ var fm = (function ($) {
 							+  fm_options.custom_html
 						+ '</div>');
 
+		/*
 		if (fm_options.jQueryUI === true) {
 			$('.feedback_submit').button({
 				icons: {
@@ -523,6 +533,7 @@ var fm = (function ($) {
 		$('.feedback_me_form').submit(function (event) {
 			event.preventDefault();
 		});
+		/*
 
 	}
 
@@ -635,6 +646,7 @@ var fm = (function ($) {
 	function closeFeedbackDelayedDlg() {
 		$(".feedback-delayed-dlg").fadeOut();
 	}
+	*/
 
 	function detectTransitionSupport() {
 		var be = document.body || document.documentElement,
@@ -721,7 +733,8 @@ var fm = (function ($) {
 		sendFeedback : sendFeedback,
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
-		stopPropagation : stopPropagation,
+	    //stopPropagation : stopPropagation,
+	    stopPropagation : function() { console.log("propagation stopped :D"); },
 		clearInputs : clearInputs,
 		closeFeedbackDelayedDlg : closeFeedbackDelayedDlg
     };
