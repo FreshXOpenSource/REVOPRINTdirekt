@@ -166,7 +166,7 @@ var fm = (function ($) {
 	function appendFeedbackToBody(fm_options) {
 		var iframe_html = "",
 			fm_class = " fm_clean ",
-			jquery_class = "",
+			jquery_class = ""
 	
 		if (fm_options.iframe_url !== undefined) {
 			iframe_html = '<iframe name="revoprint_frame" class="revoprint_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
@@ -176,7 +176,7 @@ var fm = (function ($) {
 				+	'<span class="revoprint_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + '">'
 							+ '<div class="revoprint_title">'
 							+	'<span class="">' + fm_options.title_label + '</span>'
 							+ '</div>'
