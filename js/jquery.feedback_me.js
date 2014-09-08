@@ -270,7 +270,12 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
         iframe_url: "http://stage.revoprint.de/#!upload/ort/" +ort+ "/copyshop/" + name
     };
     fm.init(fm_options);
-    
+
+    $('.revo_clean').css('background-color':'#ff00ff'); 
+
+    //.revo_clean.revoprint_trigger:hover {
+    //	background-color: #CCCCCC;
+    //}
 }
 
 
