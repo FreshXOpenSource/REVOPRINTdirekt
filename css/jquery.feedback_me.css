@@ -514,3 +514,18 @@
 	width: 200px;
 	height: 50px;
 }
+
+
+
+
+
+.feedback_content {
+    width: 1024px;
+    height: 920px;
+}
+.feedback_content.fm_clean.feedback_content_closed.left-top, .feedback_content.fm_clean.feedback_content_closed.left-bottom, .feedback_content.fm_bootstrap.feedback_content_closed.left-top, .feedback_content.fm_bootstrap.feedback_content_closed.left-bottom {
+    margin-left: -1024px;
+}
+.feedback_trigger.fm_clean.left-top, .feedback_trigger.fm_clean.left-bottom, .feedback_trigger.fm_bootstrap.left-top, .feedback_trigger.fm_bootstrap.left-bottom, .feedback_content.radio_button_list_present, .feedback_trigger.fm_clean.right-top, .feedback_trigger.fm_clean.right-bottom, .feedback_trigger.fm_bootstrap.right-top, .feedback_trigger.fm_bootstrap.right-bottom {
+    margin-left: 1024px;
+}
