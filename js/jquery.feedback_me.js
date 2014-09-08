@@ -139,54 +139,14 @@ var fm = (function ($) {
 		}
 	}
     
-	/*
-	function emailValid(str) {
-		var lastAtPos = str.lastIndexOf('@');
-		return (lastAtPos < (str.length - 1) && lastAtPos > 0 && str.indexOf('@@') === -1 && str.length > 2);
-	}
-	*/
-
+    */
 	function validateFeedbackForm(event, position) {
-		//var $fm_content = $(event.target).closest(".feedback_content");
 		var	fm_options = getFmOptions(event, position);
-		/*
-		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
-				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
-				(fm_options.message_required === true && $fm_content.find(".feedback_message").val() === "") ||
-				(fm_options.radio_button_list_required === true && $fm_content.find("input[name=feedback_radio]:checked").val() === undefined)) {
-			return false;
-		}
-		*/
+
 		return true;
-
 	}
 
-	/*
-	function checkPatternFieldsOk(event, position) {
-		var $patternFields = $("." + position + " [pattern]"),
-			form_valid = true,
-			i;
 
-		if ($patternFields.length > 0) {
-			for (i = 0; i < $patternFields.length; i++) {
-				form_valid = !$patternFields[i].validity.patternMismatch;
-				if (form_valid === false) {
-					break;
-				}
-			}
-		}
-		return form_valid;
-	}
-
-	function checkRequiredFieldsOk(event, position) {
-		var $reqFields = $("." + position + " [required]"),
-			form_valid = true;
-
-		if ($reqFields.length > 0) {
-			form_valid = validateFeedbackForm(event, position);
-		}
-		return form_valid;
-	}
 
 	function applyCloseOnClickOutside() {
 		var jqVersion = $().jquery.split(".");
@@ -203,7 +163,6 @@ var fm = (function ($) {
 		}
 	}
 
-    */
 
 	function appendFeedbackToBody(fm_options) {
 		var form_html = "",
@@ -243,69 +202,7 @@ var fm = (function ($) {
 			jquery_class = "";
 		}
 
-	    /*
-		if (fm_options.jQueryUI === true) {
-			jquery_class = " fm_jquery ";
-			jQueryUIClasses1 = " ui-widget-header ui-corner-all ui-helper-clearfix ";
-			jQueryUIClasses2 = " ui-dialog ui-widget ui-widget-content ui-corner-all ";
-			jQueryUIClasses3 = " ui-dialog-titlebar ";
-			jQueryUIClasses4 = " ui-dialog-title ";
-
-			fm_class = "";
-			bootstrap_class = "";
-			bootstrap_hero_unit = "";
-			bootstrap_btn = "";
-
-		}
-
-		if (fm_options.show_radio_button_list === true) {
-			radio_button_list_html = "<li><div class=\"radio_button_list_title_wrapper\"><div class=\"radio_button_list_title\">" + fm_options.radio_button_list_title + radio_button_list_asterisk + "</div></div><div class=\"radio_button_list_wrapper\">";
-			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"1\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_1\" " + radio_button_list_required + "\/>";
-			radio_button_list_html += "        <label for=\"feedback_radio_1\">" + fm_options.radio_button_list_labels[0] + "<\/label>";
-			radio_button_list_html += "    <\/div>";
-			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"2\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_2\"\/>";
-			radio_button_list_html += "        <label for=\"feedback_radio_2\">" + fm_options.radio_button_list_labels[1] + "<\/label>";
-			radio_button_list_html += "    <\/div>";
-			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"3\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_3\"\/>";
-			radio_button_list_html += "        <label for=\"feedback_radio_3\">" + fm_options.radio_button_list_labels[2] + "<\/label>";
-			radio_button_list_html += "    <\/div>";
-			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"4\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_4\"\/>";
-			radio_button_list_html += "        <label for=\"feedback_radio_4\">" + fm_options.radio_button_list_labels[3] + "<\/label>";
-			radio_button_list_html += "    <\/div>";
-			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"5\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_5\"\/>";
-			radio_button_list_html += "        <label for=\"feedback_radio_5\">" + fm_options.radio_button_list_labels[4] + "<\/label>";
-			radio_button_list_html += "    <\/div>";
-			radio_button_list_html += "<\/div></li>";
-
-			radio_button_list_class = " radio_button_list_present";
-		}
-      
-		if (fm_options.show_email === true) {
-			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="email" class="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
-			email_feedback_content_class = " email_present";
-		}
-
-		if (fm_options.show_form === true) {
-			form_html = '<form class="feedback_me_form">'
-				+	'<ul>'
-				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" class="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '" ' + name_pattern + '></input> </li>'
-
-				+		 email_html
-
-				+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" class="feedback_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
-
-				+		 radio_button_list_html
-
-				+		'<li>	<button type="submit" onclick="fm.sendFeedback(event,\'' + fm_options.position + '\');" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
-				+	'</ul>'
-				+	'</form>';
-		}
-		*/
+	
 		if (fm_options.iframe_url !== undefined) {
 			iframe_html = '<iframe name="feedback_me_frame" class="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
@@ -323,36 +220,11 @@ var fm = (function ($) {
 							+  fm_options.custom_html
 						+ '</div>');
 
-		/*
-		if (fm_options.jQueryUI === true) {
-			$('.feedback_submit').button({
-				icons: {
-					primary: 'ui-icon-mail-closed'
-				}
-			});
-		}
 
-		if (fm_options.close_on_click_outside === true) {
-			applyCloseOnClickOutside();
-		}
-
-		//prevent form submit (needed for validation)
-		$('.feedback_me_form').submit(function (event) {
-			event.preventDefault();
-		});
-		*/
 
 	}
 
-	/*
-	function stopPropagation(evt) {
-		if (evt.stopPropagation !== undefined) {
-			evt.stopPropagation();
-		} else {
-			evt.cancelBubble = true;
-		}
-	}
-	*/
+
 
 	function slideBack(fm_options, $fm_trigger, $fm_content) {
 		var animation_hide = {};
@@ -374,90 +246,6 @@ var fm = (function ($) {
 			);
 		}
 	}
-	
-	/*
-	function clearInputs(event) {
-		var $fm_content = $(event.target).closest(".feedback_content");
-
-		$fm_content.find(".feedback_name").val("");
-		$fm_content.find(".feedback_message").val("");
-		$fm_content.find(".feedback_email").val("");
-		$fm_content.find(".feedback_me_form input[name=feedback_radio]").prop('checked', false);
-	}
-
-	function sendFeedback(event, position) {
-		var checkValid = checkRequiredFieldsOk(event, position),
-			checkPattern = checkPatternFieldsOk(event, position),
-			dataArray,
-			$fm_trigger,
-			$fm_content,
-			fm_options = getFmOptions(event, position);
-
-		if (checkValid === false || checkPattern === false) {
-			stopPropagation(event);
-			return;
-		}
-
-		$fm_content = $(event.target).closest(".feedback_content");
-		$fm_trigger = $(event.target).closest(".feedback_content").prev();
-
-		if (fm_options.delayed_close === true) {
-			$fm_content.find('.feedback_submit').text(fm_options.delayed_options.sending);
-		}
-
-		dataArray = {
-			name: $fm_content.find(".feedback_name").val(),
-			message: $fm_content.find(".feedback_message").val(),
-			email: $fm_content.find(".feedback_email").val(),
-			radio_list_value: $fm_content.find(".feedback_me_form input[name=feedback_radio]:checked").val()
-		};
-
-		dataArray = $.extend(fm_options.custom_params, dataArray);
-
-		$.ajax({
-			type: 'POST',
-			url: fm_options.feedback_url,
-			data: dataArray,
-			beforeSend: function (xhr) {
-				if (fm_options.delayed_close === false) {
-					slideBack(fm_options, $fm_trigger, $fm_content);
-				}
-			},
-			success: function (data) {
-				var st = "";
-				fm.clearInputs(event);
-				if (fm_options.delayed_close === true) {
-					if (fm_options.delayed_options.success_color !== undefined) {
-						st = ' style="background-color:' + fm_options.delayed_options.success_color + '" ';
-					}
-					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
-					slideBack(fm_options, $fm_trigger, $fm_content);
-					$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-sucess-message">' +
-						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
-					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
-				}
-            },
-			error: function (ob, errStr) {
-				var st = "";
-				if (fm_options.delayed_close === true) {
-					if (fm_options.delayed_options.fail_color !== undefined) {
-						st = ' style="background-color:' + fm_options.delayed_options.fail_color + '" ';
-					}
-					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
-					$("body").append('<div ' + st + ' class="feedback-delayed-dlg fail" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-fail-message">' +
-						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
-					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
-				} else {
-					console.log("Failed to send feedback (please double check your feedback_url parameter)");
-				}
-			}
-		});
-	}
-
-	function closeFeedbackDelayedDlg() {
-		$(".feedback-delayed-dlg").fadeOut();
-	}
-	*/
 
 	function detectTransitionSupport() {
 		var be = document.body || document.documentElement,
@@ -485,52 +273,15 @@ var fm = (function ($) {
 	function init(options) {
 
 		var default_options = {
-			feedback_url : "",
 			position : "left-top",
-			jQueryUI : false,
-			bootstrap : false,
-			show_email : false,
-			show_radio_button_list : false,
 			close_on_click_outside: true,
-			name_label : "Name",
-			email_label : "Email",
-			message_label : "Message",
-			radio_button_list_labels : ["1", "2", "3", "4", "5"],
-			radio_button_list_title : "How would you rate my site?",
-			name_placeholder : "",
-			email_placeholder : "",
-			message_placeholder : "",
-			name_pattern : "",
-			name_required : false,
-			email_required : false,
-			message_required : false,
-			radio_button_list_required : false,
-			show_asterisk_for_required : false,
-			submit_label : "Send",
 			title_label : "Feedback",
 			trigger_label : "Feedback",
-			custom_params : {},
-			iframe_url : undefined,
-			show_form: true,
-			custom_html : "",
-			delayed_close : true,
-			delayed_options : {
-				delay_success_milliseconds : 2000,
-				delay_fail_milliseconds : 2000,
-				sending : "Sending...",
-				send_fail : "Sending failed.",
-				send_success : "Feedack sent.",
-				fail_color : undefined,
-				success_color : undefined
-			}
+			iframe_url : undefined
 		},
-			tmp_options,
-			tmp_delayed_options;
-
-		tmp_delayed_options = $.extend(default_options.delayed_options, options.delayed_options);
+			tmp_options;
 
 		tmp_options = $.extend(default_options, options);
-		tmp_options.delayed_options = tmp_delayed_options;
 
 		fm_options_arr[tmp_options.position] = tmp_options;
 
@@ -541,13 +292,9 @@ var fm = (function ($) {
 
     return {
 		init : init,
-		//sendFeedback : sendFeedback,
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
-	    //stopPropagation : stopPropagation,
 	    stopPropagation : function() { console.log("propagation stopped :D"); }
-		//clearInputs : clearInputs,
-		//closeFeedbackDelayedDlg : closeFeedbackDelayedDlg
     };
 
 }(jQuery));
