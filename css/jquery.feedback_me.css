@@ -8,8 +8,6 @@
 	transition: all 500ms ease-in-out;
 }
 
-
-
 .revoprint_trigger{
 	cursor: pointer;
 	-webkit-border-top-left-radius: 0px;
@@ -58,31 +56,31 @@
 	filter:none;
 }
 
-.fm_clean {
+.revo_clean {
 	background-color: #DDDDDD;
 }
 
-.fm_clean.revoprint_trigger:hover {
+.revo_clean.revoprint_trigger:hover {
 	background-color: #CCCCCC;
 }
 
-.fm_clean .revoprint_trigger_text { 
+.revo_clean .revoprint_trigger_text { 
 	//right: -25px;
 }
 
-.fm_clean .revoprint_title {
+.revo_clean .revoprint_title {
 	padding-top: 5px;	
 }
 
-.fm_clean .revoprint_title span {
+.revo_clean .revoprint_title span {
 	margin-left: 10px;
 }
 
-.revoprint_content.fm_clean.revoprint_content_closed.left-top, .revoprint_content.fm_clean.revoprint_content_closed.left-bottom{
-	margin-left: -380px;
+.revoprint_content.revo_clean.revoprint_content_closed.left-top, .revoprint_content.revo_clean.revoprint_content_closed.left-bottom{
+	margin-left: -1024px;
 }
 
-.revoprint_content.fm_clean.left-top, .revoprint_content.fm_clean.left-bottom{
+.revoprint_content.revo_clean.left-top, .revoprint_content.revo_clean.left-bottom{
 	margin-left: 0px;
 	-webkit-border-bottom-right-radius: 6px;
 	-moz-border-bottom-right-radius: 6px;
@@ -92,12 +90,12 @@
 	border-top-right-radius: 6px;
 }
 
-.revoprint_trigger.fm_clean.revoprint_trigger_closed.left-top, .revoprint_trigger.fm_clean.revoprint_trigger_closed.left-bottom{
+.revoprint_trigger.revo_clean.revoprint_trigger_closed.left-top, .revoprint_trigger.revo_clean.revoprint_trigger_closed.left-bottom{
 	margin-left: 0px;
 }
 
-.revoprint_trigger.fm_clean.left-top, .revoprint_trigger.fm_clean.left-bottom{
-	margin-left: 380px;
+.revoprint_trigger.revo_clean.left-top, .revoprint_trigger.revo_clean.left-bottom{
+	margin-left: 1024px;
 	-webkit-border-bottom-right-radius: 6px;
 	-moz-border-bottom-right-radius: 6px;
 	border-bottom-right-radius: 6px;
@@ -109,7 +107,7 @@
 
 
 @media \0screen {
-	.fm_clean .revoprint_trigger_text {
+	.revo_clean .revoprint_trigger_text {
 		right:-70px;
 		width:100px;
 		margin-top:-45px;
@@ -165,11 +163,11 @@
 	right: 0;
 }
 
-.revoprint_content.fm_clean.revoprint_content_closed.right-top, .revoprint_content.fm_clean.revoprint_content_closed.right-bottom{
-	margin-right: -380px;
+.revoprint_content.revo_clean.revoprint_content_closed.right-top, .revoprint_content.revo_clean.revoprint_content_closed.right-bottom{
+	margin-right: -1024px;
 }
 
-.revoprint_content.fm_clean.right-top, .revoprint_content.fm_clean.right-bottom{
+.revoprint_content.revo_clean.right-top, .revoprint_content.revo_clean.right-bottom{
 	margin-right: 0px;
 	-webkit-border-bottom-left-radius: 6px;
 	-moz-border-bottom-left-radius: 6px;
@@ -179,12 +177,12 @@
 	border-top-left-radius: 6px;
 }
 
-.revoprint_trigger.fm_clean.revoprint_trigger_closed.right-top, .revoprint_trigger.fm_clean.revoprint_trigger_closed.right-bottom{
+.revoprint_trigger.revo_clean.revoprint_trigger_closed.right-top, .revoprint_trigger.revo_clean.revoprint_trigger_closed.right-bottom{
 	margin-right: 0px;
 }
 
-.revoprint_trigger.fm_clean.right-top, .revoprint_trigger.fm_clean.right-bottom{
-	margin-right: 380px;
+.revoprint_trigger.revo_clean.right-top, .revoprint_trigger.revo_clean.right-bottom{
+	margin-right: 1024px;
 	-webkit-border-bottom-left-radius: 6px;
 	-moz-border-bottom-left-radius: 6px;
 	border-bottom-left-radius: 6px;
@@ -198,16 +196,4 @@
 	overflow: auto; 
 	height: 95%;
 	width: 98%;
-}
-
-
-
-
-
-
-.revoprint_content.fm_clean.revoprint_content_closed.left-top, .revoprint_content.fm_clean.revoprint_content_closed.left-bottom {
-    margin-left: -1024px;
-}
-.revoprint_trigger.fm_clean.left-top, .revoprint_trigger.fm_clean.left-bottom, .revoprint_trigger.fm_clean.right-top, .revoprint_trigger.fm_clean.right-bottom {
-    margin-left: 1024px;
 }

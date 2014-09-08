@@ -165,7 +165,7 @@ var fm = (function ($) {
 
 	function appendFeedbackToBody(fm_options) {
 		var iframe_html = "",
-			fm_class = " fm_clean ",
+			fm_class = " revo_clean ",
 			jquery_class = ""
 	
 		if (fm_options.iframe_url !== undefined) {
