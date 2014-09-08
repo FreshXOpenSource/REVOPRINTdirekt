@@ -139,7 +139,6 @@ var fm = (function ($) {
 		}
 	}
     
-    */
 	function validateFeedbackForm(event, position) {
 		var	fm_options = getFmOptions(event, position);
 
