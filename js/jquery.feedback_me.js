@@ -271,7 +271,7 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
     };
     fm.init(fm_options);
 
-    $('.revo_clean').css('background-color':'#ff00ff'); 
+    //$('.revo_clean').css({'background-color':'#ff00ff'}); 
 
     //.revo_clean.revoprint_trigger:hover {
     //	background-color: #CCCCCC;
