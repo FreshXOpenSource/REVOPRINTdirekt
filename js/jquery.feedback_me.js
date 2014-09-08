@@ -727,3 +727,18 @@ var fm = (function ($) {
     };
 
 }(jQuery));
+
+
+var revoprint = function (ort, name, labeltext, labelcolor) {
+    fm_options = {
+        title_label: "Bei Revoprint drucken",
+        trigger_label: " " + labeltext + " ",
+        show_form: false,
+        position: "left-bottom",
+        iframe_url: "http://stage.revoprint.de/#!upload/ort/" +ort+ "/copyshop/" + name
+    };
+    fm.init(fm_options);
+    
+}
+
+
