@@ -20,200 +20,7 @@
 * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
 * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
 */
-/*
-* Parameters:
-*
-*					
-* -------------
 
-* feedback_url
-				Required:			true
-				Type:				String
-				Description:		URL of your servlet/php etc ('name', 'message' and 'email' parameters will be send to your servlet/php etc...)
-
-* position				
-				Required:			false
-				Type:				String
-				Default value:		left-top
-				Possible values:	left-top / left-bottom / right-top / right-bottom 
-				Description:		Set the position where the feedback widget will be located
-* jQueryUI
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Tell the plugin to use jQuery UI theme
-
-* bootstrap
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Tell the plugin to use twitter bootstrap
-
-* show_email
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Tell the plugin to display email input field
-
-* show_radio_button_list
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Tell the plugin to set of 5 radio buttons
-				
-* name_label
-				Required:			false
-				Type:				String
-				Default value:		"Name"
-				Description:		Label for name input
-
-* email_label
-				Required:			false
-				Type:				String
-				Default value:		"Email"
-				Description:		Label for email input
-
-* message_label
-				Required:			false
-				Type:				String
-				Default value:		"Message"
-				Description:		Label for message input
-
-* radio_button_list_labels
-				Required:			false
-				Type:				Array of 5 strings
-				Default value:		["1","2","3","4","5"]
-				Description:		Labels for radio button list
-
-* radio_button_list_title
-				Required:			false
-				Type:				String
-				Default value:		"How would you rate my site?"
-				Description:		Label that will appear above the list of radio button
-				
-* submit_label
-				Required:			false
-				Type:				String
-				Default value:		"Send"
-				Description:		Label for submit input
-
-* title_label
-				Required:			false
-				Type:				String
-				Default value:		"Feedback"
-				Description:		Label for title text
-
-* trigger_label
-				Required:			false
-				Type:				String
-				Default value:		"Feedback"
-				Description:		Label for open/close (trigger) button
-
-* name_placeholder
-				Required:			false
-				Type:				String
-				Default value:		""
-				Description:		Watermark for name input
-
-* email_placeholder
-				Required:			false
-				Type:				String
-				Default value:		""
-				Description:		Watermark for email input
-
-* message_placeholder
-				Required:			false
-				Type:				String
-				Default value:		""
-				Description:		Watermark for message input
-
-* name_pattern				
-				Required:			false
-				Type:				String
-				Default value:		""
-				Description:		Set name input pattern, you must escape your '\' chars (\ ---> \\)
-
-* name_required
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Makes input required
-
-* email_required
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Makes input required
-
-* message_required
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Makes input required
-
-* radio_button_list_required
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Makes radio inputs required
-
-* show_asterisk_for_required
-				Required:			false
-				Type:				boolean
-				Default value:		false
-				Description:		Add an asterisk to the label of the required inputs
-
-* close_on_click_outside				
-				Required:			false
-				Type:				boolean
-				Default value:		true
-				Description:		Will cause the feedback dialog to be closed on clicking anywhere outside the dialog
-				
-* custom_params				
-				Required:			false
-				Type:				object
-				Default value:		{}
-				Description:		Use it if you want to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
-* iframe_url				
-				Required:			false
-				Type:				String
-				Default value:		undefined
-				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, (note that in order to close the feedback_me widget
-									just call the following command: parent.fm.triggerAction(event, "left-top"); don't forget to pass the "event" from you onclick call to the triggerAction function
-									and also the position of your feedback widget left-top / left-bottom / right-top / right-bottom)
-* show_form				
-				Required:			false
-				Type:				boolean
-				Default value:		true
-				Description:		Allows you to hide the form in the widget (and only show HTML code or iframe)
-* custom_html				
-				Required:			false
-				Type:				String
-				Default value:		""
-				Description:		Allows you to use any inline html code that you want, it will be placed inside feedback_me widget
-* delayed_close 
-				Required:			false
-				Type:				boolean
-				Default value:		true
-				Description:		Enable feedback dialog upon feedback sending, a small dialog will be displayed with	appropriate message in the middle
-									of the screen and then fade out (read more about the delayed_options property)
-* delayed_options
-				Required:			false
-				Type:				object
-				Default value:
-									{
-										delay_success_milliseconds : 2000,
-										delay_fail_milliseconds : 2000,
-										sending : "Sending...", //This text will appear on the "send" button while sending
-										send_fail : "Sending failed.", //This text will appear on the fail dialog
-										send_success : "Feedack sent.", //This text will appear on the success dialog
-										fail_color : undefined,
-										success_color : undefined
-									}
-				Description:		Allow to customize the feedback dialog upon feedback sending
-*
-*
-*/
 var fm = (function ($) {
 
 	'use strict';
@@ -340,8 +147,8 @@ var fm = (function ($) {
 	*/
 
 	function validateFeedbackForm(event, position) {
-		var $fm_content = $(event.target).closest(".feedback_content"),
-			fm_options = getFmOptions(event, position);
+		//var $fm_content = $(event.target).closest(".feedback_content");
+		var	fm_options = getFmOptions(event, position);
 		/*
 		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
 				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
@@ -533,10 +340,11 @@ var fm = (function ($) {
 		$('.feedback_me_form').submit(function (event) {
 			event.preventDefault();
 		});
-		/*
+		*/
 
 	}
 
+	/*
 	function stopPropagation(evt) {
 		if (evt.stopPropagation !== undefined) {
 			evt.stopPropagation();
@@ -544,6 +352,7 @@ var fm = (function ($) {
 			evt.cancelBubble = true;
 		}
 	}
+	*/
 
 	function slideBack(fm_options, $fm_trigger, $fm_content) {
 		var animation_hide = {};
@@ -565,6 +374,8 @@ var fm = (function ($) {
 			);
 		}
 	}
+	
+	/*
 	function clearInputs(event) {
 		var $fm_content = $(event.target).closest(".feedback_content");
 
@@ -730,13 +541,13 @@ var fm = (function ($) {
 
     return {
 		init : init,
-		sendFeedback : sendFeedback,
+		//sendFeedback : sendFeedback,
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
 	    //stopPropagation : stopPropagation,
-	    stopPropagation : function() { console.log("propagation stopped :D"); },
-		clearInputs : clearInputs,
-		closeFeedbackDelayedDlg : closeFeedbackDelayedDlg
+	    stopPropagation : function() { console.log("propagation stopped :D"); }
+		//clearInputs : clearInputs,
+		//closeFeedbackDelayedDlg : closeFeedbackDelayedDlg
     };
 
 }(jQuery));
