@@ -31,10 +31,10 @@ var fm = (function ($) {
 	function getFmOptions(event, position) {
 		var className,
 			selector;
-		if ($(event.target).closest(".feedback_trigger").length === 1) {
-			className = $(event.target).closest(".feedback_trigger")[0].className;
-		} else if ($(event.target).closest(".feedback_content").length === 1) {
-			className = $(event.target).closest(".feedback_content")[0].className;
+		if ($(event.target).closest(".revoprint_trigger").length === 1) {
+			className = $(event.target).closest(".revoprint_trigger")[0].className;
+		} else if ($(event.target).closest(".revoprint_content").length === 1) {
+			className = $(event.target).closest(".revoprint_content")[0].className;
 		} else {
 			if (position === undefined) {
 				position = 'left-top';
@@ -69,39 +69,39 @@ var fm = (function ($) {
 			animation_hide.marginRight = "-=380px";
 		}
 
-		$fm_trigger = $(event.target).closest(".feedback_trigger");
+		$fm_trigger = $(event.target).closest(".revoprint_trigger");
 		if ($fm_trigger.length === 1) {
 			$fm_content = $fm_trigger.next();
 		} else {
-			$fm_content = $(event.target).closest(".feedback_content");
+			$fm_content = $(event.target).closest(".revoprint_content");
 			$fm_trigger = $fm_content.prev();
 		}
 		if ($fm_content.length === 0 || $fm_trigger.length === 0) {
 			if (position === undefined) {
 				position = 'left-top';
 			}
-			$fm_content = $('.' + position).closest(".feedback_content");
+			$fm_content = $('.' + position).closest(".revoprint_content");
 			$fm_trigger = $fm_content.prev();
 		}
 
-		if ($fm_trigger.hasClass("feedback_trigger_closed")) {
+		if ($fm_trigger.hasClass("revoprint_trigger_closed")) {
 			if (supportsTransitions === true) {
-				$fm_trigger.removeClass("feedback_trigger_closed");
-				$fm_content.removeClass("feedback_content_closed");
+				$fm_trigger.removeClass("revoprint_trigger_closed");
+				$fm_content.removeClass("revoprint_content_closed");
 			} else {
 				$fm_trigger.add($fm_content).animate(
 					animation_show,
 					150,
 					function () {
-						$fm_trigger.removeClass("feedback_trigger_closed");
-						$fm_content.removeClass("feedback_content_closed");
+						$fm_trigger.removeClass("revoprint_trigger_closed");
+						$fm_content.removeClass("revoprint_content_closed");
 					}
 				);
 			}
 		} else {
 			//first add the closed class so double (which will trigger closeFeedback function) click wont try to hide the form twice
-			$fm_trigger.addClass("feedback_trigger_closed");
-			$fm_content.addClass("feedback_content_closed");
+			$fm_trigger.addClass("revoprint_trigger_closed");
+			$fm_content.addClass("revoprint_content_closed");
 			if (supportsTransitions === false) {
 				$fm_trigger.add($fm_content).animate(
 					animation_hide,
@@ -113,8 +113,8 @@ var fm = (function ($) {
 
 	function closeFeedback(event) {
 
-		if (($(".feedback_content").length === 1 && $(".feedback_content").hasClass("feedback_content_closed")) ||
-				$(event.target).closest('.feedback_content').length === 1) {
+		if (($(".revoprint_content").length === 1 && $(".revoprint_content").hasClass("revoprint_content_closed")) ||
+				$(event.target).closest('.revoprint_content').length === 1) {
 			return;
 		}
 
@@ -127,10 +127,10 @@ var fm = (function ($) {
 					animation_hide.marginRight = "-=380px";
 				}
 
-				$(".feedback_trigger").addClass("feedback_trigger_closed");
-				$(".feedback_content").addClass("feedback_content_closed");
+				$(".revoprint_trigger").addClass("revoprint_trigger_closed");
+				$(".revoprint_content").addClass("revoprint_content_closed");
 				if (supportsTransitions === false) {
-					$(".feedback_trigger , .feedback_content").animate(
+					$(".revoprint_trigger , .revoprint_content").animate(
 						animation_hide,
 						150
 					);
@@ -164,54 +164,20 @@ var fm = (function ($) {
 
 
 	function appendFeedbackToBody(fm_options) {
-		var form_html = "",
-			iframe_html = "",
-			jQueryUIClasses1 = "",
-			jQueryUIClasses2 = "",
-			jQueryUIClasses3 = "",
-			jQueryUIClasses4 = "",
-			email_html = "",
-			email_feedback_content_class = "",
-			radio_button_list_html = "",
-			radio_button_list_class = "",
+		var iframe_html = "",
 			fm_class = " fm_clean ",
 			jquery_class = "",
-			bootstrap_class = "",
-			bootstrap_btn = "",
-			bootstrap_hero_unit = "",
-
-			name_pattern = fm_options.name_pattern === "" ? "" : "pattern=\"" + fm_options.name_pattern + "\"",
-
-			name_required = fm_options.name_required ? "required" : "",
-			email_required = fm_options.email_required ? "required" : "",
-			message_required = fm_options.message_required ? "required" : "",
-			radio_button_list_required = fm_options.radio_button_list_required ? "required" : "",
-
-			name_asterisk  = fm_options.name_required && fm_options.show_asterisk_for_required ? "<span class=\"required_asterisk\">*</span>" : "",
-			email_asterisk  = fm_options.email_required && fm_options.show_asterisk_for_required ? "<span class=\"required_asterisk\">*</span>" : "",
-			message_asterisk  = fm_options.message_required && fm_options.show_asterisk_for_required ? "<span class=\"required_asterisk\">*</span>" : "",
-			radio_button_list_asterisk = fm_options.radio_button_list_required && fm_options.show_asterisk_for_required ? "<span class=\"required_asterisk\">*</span>" : "";
-
-		if (fm_options.bootstrap === true) {
-			bootstrap_class = " fm_bootstrap ";
-			bootstrap_btn = " btn btn-primary ";
-			bootstrap_hero_unit = " hero-unit ";
-
-			fm_class = "";
-			jquery_class = "";
-		}
-
 	
 		if (fm_options.iframe_url !== undefined) {
-			iframe_html = '<iframe name="feedback_me_frame" class="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
+			iframe_html = '<iframe name="revoprint_frame" class="revoprint_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
 
-		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger feedback_trigger_closed ' + fm_options.position + fm_class + jquery_class'">'
-				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
+		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="revoprint_trigger revoprint_trigger_closed ' + fm_options.position + fm_class + jquery_class + '">'
+				+	'<span class="revoprint_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div class="feedback_content feedback_content_closed ' + fm_options.position + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
-							+ '<div class="feedback_title">'
+		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+							+ '<div class="revoprint_title">'
 							+	'<span class="">' + fm_options.title_label + '</span>'
 							+ '</div>'
 							+  iframe_html
@@ -229,14 +195,14 @@ var fm = (function ($) {
 		}
 
 		if (supportsTransitions === true) {
-			$fm_trigger.addClass("feedback_trigger_closed");
-			$fm_content.addClass("feedback_content_closed");
+			$fm_trigger.addClass("revoprint_trigger_closed");
+			$fm_content.addClass("revoprint_content_closed");
 		} else {
 			$fm_trigger.add($fm_content).animate(
 				animation_hide,
 				150,
 				function () {
-					$fm_trigger.addClass("feedback_trigger_closed");
+					$fm_trigger.addClass("revoprint_trigger_closed");
 				}
 			);
 		}
