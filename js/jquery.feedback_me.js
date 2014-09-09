@@ -304,7 +304,7 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
     console.log("b: "+b);
     var hsl = rgbToHsl(r,g,b);
     //console.log("HSL: "+ hsl.toString())
-    //$('.revo_clean').css({'background-color':'#ff00ff'}); 
+    //$('.revo_clean').css({"background-color":"#ff00ff"}); 
 
     //.revo_clean.revoprint_trigger:hover {
     //	background-color: #CCCCCC;
