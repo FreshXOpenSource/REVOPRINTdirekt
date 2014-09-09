@@ -265,8 +265,9 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
     };
     fm.init(fm_options);
 
-    if(labelcolor.trim())
-    	$('.revo_clean').css({"background-color": labelcolor); 
+    if(labelcolor.trim()) {
+    	$('.revo_clean').css({"background-color": labelcolor}); 
+    }
 }
 
 
