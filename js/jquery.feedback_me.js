@@ -256,37 +256,6 @@ var fm = (function ($) {
 
 }(jQuery));
 
-/**
- * Converts an RGB color value to HSL. Conversion formula
- * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
- * Assumes r, g, and b are contained in the set [0, 255] and
- * returns h, s, and l in the set [0, 1].
- *
- * @param   Number  r       The red color value
- * @param   Number  g       The green color value
- * @param   Number  b       The blue color value
- * @return  Array           The HSL representation
- */
-var rgbToHsl = function (r, g, b){
-    r /= 255, g /= 255, b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
-
-    if(max == min){
-        h = s = 0; // achromatic
-    }else{
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch(max){
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-    return [h, s, l];
-}
-
 var revoprint = function (ort, name, labeltext, labelcolor) {
     fm_options = {
         title_label: "Bei Revoprint drucken",
@@ -296,15 +265,7 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
     };
     fm.init(fm_options);
 
-    var r = labelcolor.slice(1,3);
-    var g = labelcolor.slice(3,5);
-    var b = labelcolor.slice(5,7);
-    console.log("r: "+r);
-    console.log("g: "+g);
-    console.log("b: "+b);
-    var hsl = rgbToHsl(r,g,b);
-    console.log("HSL: "+ hsl);
-    $('.revo_clean').css({"background-color":"#ff00ff"}); 
+    $('.revo_clean').css(backgroundColor: labelcolor); 
 
     //.revo_clean.revoprint_trigger:hover {
     //	background-color: #CCCCCC;
