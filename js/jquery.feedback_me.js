@@ -296,9 +296,9 @@ var revoprint = function (ort, name, labeltext, labelcolor) {
     };
     fm.init(fm_options);
 
-    var r = labelcolor.splice(1,2);
-    var g = labelcolor.splice(3,4);
-    var b = labelcolor.splice(5,6);
+    var r = labelcolor.slice(1,2);
+    var g = labelcolor.slice(3,4);
+    var b = labelcolor.slice(5,6);
     console.log("r: "+r);
     console.log("g: "+g);
     console.log("b: "+b);
