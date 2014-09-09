@@ -61,12 +61,12 @@ var fm = (function ($) {
 			$fm_trigger,
 			$fm_content;
 
-		animation_show.marginLeft = "+=380px";
-		animation_hide.marginLeft = "-=380px";
+		animation_show.marginLeft = "+=1024px";
+		animation_hide.marginLeft = "-=1024px";
 
 		if (fm.getFmOptions(event, position).position.indexOf("right-") !== -1) {
-			animation_show.marginRight = "+=380px";
-			animation_hide.marginRight = "-=380px";
+			animation_show.marginRight = "+=1024px";
+			animation_hide.marginRight = "-=1024px";
 		}
 
 		$fm_trigger = $(event.target).closest(".revoprint_trigger");
@@ -120,11 +120,11 @@ var fm = (function ($) {
 
 		var animation_hide = {},
 			option;
-		animation_hide.marginLeft = "-=380px";
+		animation_hide.marginLeft = "-=1024px";
 		for (option in fm_options_arr) {
 			if (fm_options_arr.hasOwnProperty(option)) {
 				if (option.indexOf("right-") !== -1) {
-					animation_hide.marginRight = "-=380px";
+					animation_hide.marginRight = "-=1024px";
 				}
 
 				$(".revoprint_trigger").addClass("revoprint_trigger_closed");
@@ -145,8 +145,6 @@ var fm = (function ($) {
 		return true;
 	}
 
-
-
 	function applyCloseOnClickOutside() {
 		var jqVersion = $().jquery.split(".");
 		jqVersion[0] = +jqVersion[0];
@@ -162,21 +160,19 @@ var fm = (function ($) {
 		}
 	}
 
-
 	function appendFeedbackToBody(fm_options) {
 		var iframe_html = "",
-			fm_class = " revo_clean ",
-			jquery_class = ""
+			fm_class = " revo_clean "
 	
 		if (fm_options.iframe_url !== undefined) {
 			iframe_html = '<iframe name="revoprint_frame" class="revoprint_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
 
-		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="revoprint_trigger revoprint_trigger_closed ' + fm_options.position + fm_class + jquery_class + '">'
+		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="revoprint_trigger revoprint_trigger_closed ' + fm_options.position + fm_class + '">'
 				+	'<span class="revoprint_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + jquery_class + '">'
+		$('body').append('<div class="revoprint_content revoprint_content_closed ' + fm_options.position + fm_class + '">'
 							+ '<div class="revoprint_title">'
 							+	'<span class="">' + fm_options.title_label + '</span>'
 							+ '</div>'
@@ -189,9 +185,9 @@ var fm = (function ($) {
 
 	function slideBack(fm_options, $fm_trigger, $fm_content) {
 		var animation_hide = {};
-		animation_hide.marginLeft = "-=380px";
+		animation_hide.marginLeft = "-=1024px";
 		if (fm_options.position.indexOf("right-") !== -1) {
-			animation_hide.marginRight = "-=380px";
+			animation_hide.marginRight = "-=1024px";
 		}
 
 		if (supportsTransitions === true) {
@@ -255,22 +251,59 @@ var fm = (function ($) {
 		init : init,
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
-	    stopPropagation : function() { console.log("propagation stopped :D"); }
+	    stopPropagation : function() {}
     };
 
 }(jQuery));
 
+/**
+ * Converts an RGB color value to HSL. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes r, g, and b are contained in the set [0, 255] and
+ * returns h, s, and l in the set [0, 1].
+ *
+ * @param   Number  r       The red color value
+ * @param   Number  g       The green color value
+ * @param   Number  b       The blue color value
+ * @return  Array           The HSL representation
+ */
+var rgbToHsl = function (r, g, b){
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return [h, s, l];
+}
 
 var revoprint = function (ort, name, labeltext, labelcolor) {
     fm_options = {
         title_label: "Bei Revoprint drucken",
         trigger_label: labeltext,
-        show_form: false,
         position: "left-bottom",
         iframe_url: "http://stage.revoprint.de/#!upload/ort/" +ort+ "/copyshop/" + name
     };
     fm.init(fm_options);
 
+    var r = labelcolor.splice(1,2);
+    var g = labelcolor.splice(3,4);
+    var b = labelcolor.splice(5,6);
+    console.log("r: "+r);
+    console.log("g: "+g);
+    console.log("b: "+b);
+    var hsl = rgbToHsl(r,g,b);
+    //console.log("HSL: "+ hsl.toString())
     //$('.revo_clean').css({'background-color':'#ff00ff'}); 
 
     //.revo_clean.revoprint_trigger:hover {
