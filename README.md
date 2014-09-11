@@ -24,9 +24,16 @@ Usage / Integration into your Copyhop site:
 
 
 ```javascript
-$(document).ready(function () {
-    revoprint("city", "copyshop", "#ff00ff");
-});
+
+
+    <script type="text/javascript" src="http://revoprint.de/direkt.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            revoprint("saarbruecken", "digitaldruck+pirrot+gmbh", "#009ee3");
+        });
+    </script>
+</head>
+</html>
 
 
 
