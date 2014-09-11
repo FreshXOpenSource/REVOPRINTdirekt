@@ -1,3 +1,4 @@
+based on the work of Daniel Reznick in his feedback_me plugin. Thanks!
 Copyright (c) 2013, Daniel Reznick, vedmack@gmail.com
 All rights reserved.
 
