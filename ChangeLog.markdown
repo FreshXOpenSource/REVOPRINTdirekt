@@ -1,4 +1,4 @@
-# jQuery Feedback Me Plugin ChangeLog
+# jQuery REVOPRINTdirekt plugin ChangeLog
 
 
 ## 0.5.6
