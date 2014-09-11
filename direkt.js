@@ -242,7 +242,7 @@ var revoprint = function (ort, name, labelcolor) {
 
 
     var link = document.createElement("link");
-    link.href = "http://example.com/mystyle.css";
+    link.href = "http://10.111.23.42:1111/direkt.css";
     link.type = "text/css";
     link.rel = "stylesheet";
     document.getElementsByTagName("head")[0].appendChild(link);
@@ -251,12 +251,12 @@ var revoprint = function (ort, name, labelcolor) {
         title_label: "Bei Revoprint drucken",
         trigger_label: "DRUCKEN",
         position: "left-bottom",
-        iframe_url: "http://revoprint.de/#!upload/ort/" +ort+ "/copyshop/" + name
+        iframe_url: "http://10.111.23.42:1111/#!upload/ort/" +ort+ "/copyshop/" + name
     };
     fm.init(fm_options);
 
     if(labelcolor.trim()) {
-    	$('.revo_clean').css({"background-color": labelcolor}); 
+    	jQuery('.revo_clean').css({"background-color": labelcolor}); 
     }
 }
 
