@@ -27,7 +27,7 @@ Usage / Integration into your Copyhop site:
             revoprint("saarbruecken", "digitaldruck+pirrot+gmbh", "#009ee3");
         });
     </script>
-
+````
 
 Wenn Sie JavaScript-Code in einen bestimmten Bereich einfügen möchten, müssen Sie Ihr HTML-Dokument mit einem Editor öffnen, um den HTML-Code (Quellcode) der Seite einzusehen um die Bereiche 'Head' und 'Body' zu lokalisieren.
 
