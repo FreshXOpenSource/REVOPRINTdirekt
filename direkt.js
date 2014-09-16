@@ -13,10 +13,10 @@ var fm = (function ($) {
 	function getFmOptions(event, position) {
 		var className,
 			selector;
-		if ($(event.target).closest(".revoprint_trigger").length === 1) {
-			className = $(event.target).closest(".revoprint_trigger")[0].className;
-		} else if ($(event.target).closest(".revoprint_content").length === 1) {
-			className = $(event.target).closest(".revoprint_content")[0].className;
+		if ($(event.target).closest('.revoprint_trigger').length === 1) {
+			className = $(event.target).closest('.revoprint_trigger')[0].className;
+		} else if ($(event.target).closest('.revoprint_content').length === 1) {
+			className = $(event.target).closest('.revoprint_content')[0].className;
 		} else {
 			if (position === undefined) {
 				position = 'left-top';
@@ -43,47 +43,47 @@ var fm = (function ($) {
 			$fm_trigger,
 			$fm_content;
 
-		animation_show.marginLeft = "+=1024px";
-		animation_hide.marginLeft = "-=1024px";
+		animation_show.marginLeft = '+=1024px';
+		animation_hide.marginLeft = '-=1024px';
 
-		if (fm.getFmOptions(event, position).position.indexOf("right-") !== -1) {
-			animation_show.marginRight = "+=1024px";
-			animation_hide.marginRight = "-=1024px";
+		if (fm.getFmOptions(event, position).position.indexOf('right-') !== -1) {
+			animation_show.marginRight = '+=1024px';
+			animation_hide.marginRight = '-=1024px';
 		}
 
-		$fm_trigger = $(event.target).closest(".revoprint_trigger");
+		$fm_trigger = $(event.target).closest('.revoprint_trigger');
 		if ($fm_trigger.length === 1) {
 			$fm_content = $fm_trigger.next();
 		} else {
-			$fm_content = $(event.target).closest(".revoprint_content");
+			$fm_content = $(event.target).closest('.revoprint_content');
 			$fm_trigger = $fm_content.prev();
 		}
 		if ($fm_content.length === 0 || $fm_trigger.length === 0) {
 			if (position === undefined) {
 				position = 'left-top';
 			}
-			$fm_content = $('.' + position).closest(".revoprint_content");
+			$fm_content = $('.' + position).closest('.revoprint_content');
 			$fm_trigger = $fm_content.prev();
 		}
 
-		if ($fm_trigger.hasClass("revoprint_trigger_closed")) {
+		if ($fm_trigger.hasClass('revoprint_trigger_closed')) {
 			if (supportsTransitions === true) {
-				$fm_trigger.removeClass("revoprint_trigger_closed");
-				$fm_content.removeClass("revoprint_content_closed");
+				$fm_trigger.removeClass('revoprint_trigger_closed');
+				$fm_content.removeClass('revoprint_content_closed');
 			} else {
 				$fm_trigger.add($fm_content).animate(
 					animation_show,
 					150,
 					function () {
-						$fm_trigger.removeClass("revoprint_trigger_closed");
-						$fm_content.removeClass("revoprint_content_closed");
+						$fm_trigger.removeClass('revoprint_trigger_closed');
+						$fm_content.removeClass('revoprint_content_closed');
 					}
 				);
 			}
 		} else {
 			//first add the closed class so double (which will trigger closeFeedback function) click wont try to hide the form twice
-			$fm_trigger.addClass("revoprint_trigger_closed");
-			$fm_content.addClass("revoprint_content_closed");
+			$fm_trigger.addClass('revoprint_trigger_closed');
+			$fm_content.addClass('revoprint_content_closed');
 			if (supportsTransitions === false) {
 				$fm_trigger.add($fm_content).animate(
 					animation_hide,
@@ -95,17 +95,17 @@ var fm = (function ($) {
 
 	function closeFeedback(event) {
 
-		if (($(".revoprint_content").length === 1 && $(".revoprint_content").hasClass("revoprint_content_closed")) ||
+		if (($('.revoprint_content').length === 1 && $('.revoprint_content').hasClass('revoprint_content_closed')) ||
 				$(event.target).closest('.revoprint_content').length === 1) {
 			return;
 		}
 
 		var animation_hide = {},
 			option;
-		animation_hide.marginLeft = "-=1024px";
+		animation_hide.marginLeft = '-=1024px';
 		for (option in fm_options_arr) {
 			if (fm_options_arr.hasOwnProperty(option)) {
-				if (option.indexOf("right-") !== -1) {
+				if (option.indexOf('right-') !== -1) {
 					animation_hide.marginRight = "-=1024px";
 				}
 
@@ -180,7 +180,7 @@ var fm = (function ($) {
 				animation_hide,
 				150,
 				function () {
-					$fm_trigger.addClass("revoprint_trigger_closed");
+					$fm_trigger.addClass('revoprint_trigger_closed');
 				}
 			);
 		}
@@ -212,10 +212,10 @@ var fm = (function ($) {
 	function init(options) {
 
 		var default_options = {
-			position : "left-top",
+			position : 'left-top',
 			close_on_click_outside: true,
-			title_label : "Feedback",
-			trigger_label : "Feedback",
+			title_label : 'Bei Revoprint drucken',
+			trigger_label : 'DRUCKEN',
 			iframe_url : undefined
 		},
 			tmp_options;
@@ -238,7 +238,7 @@ var fm = (function ($) {
 
 }(jQuery));
 
-var revoprint = function (ort, name, labelcolor) {
+var revoprint = function (options) {
 
 
     var link = document.createElement("link");
@@ -251,12 +251,12 @@ var revoprint = function (ort, name, labelcolor) {
         title_label: "Bei Revoprint drucken",
         trigger_label: "DRUCKEN",
         position: "left-bottom",
-        iframe_url: "http://10.111.23.42:1111/#!upload/ort/" +ort+ "/copyshop/" + name
+        iframe_url: "http://10.111.23.42:1111/#!upload/ort/" + options.ort + "/copyshop/" + options.name
     };
     fm.init(fm_options);
-
-    if(labelcolor.trim()) {
-    	jQuery('.revo_clean').css({"background-color": labelcolor}); 
+     
+    if(options.bgColor.trim()) {
+    	jQuery('.revo_clean').css({"background-color": options.bgColor.trim()}); 
     }
 }
 
