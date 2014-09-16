@@ -19,12 +19,11 @@ Usage / Integration into your Copyhop site:
 =====
 
 
-
 ```javascript
     <script type="text/javascript" src="http://revoprint.de/direkt.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            revoprint("saarbruecken", "digitaldruck+pirrot+gmbh", "#009ee3");
+            revoprint({'ort': 'saarbruecken', 'name': 'digitaldruck+pirrot+gmbh', 'bgColor': '#009ee3'});
         });
     </script>
 ````
