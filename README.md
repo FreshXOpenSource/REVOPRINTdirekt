@@ -38,7 +38,24 @@ Genau an dieser Stelle ist die Grenze zwischen Head und Body (Kopf und Körper )
 
 Oberhalb des </head>-Tags ist der HEAD-Bereich der Seite.
 
+
+```html
+<html>
+    <head>
+    ...
+    
+    HIER EINFÜGEN
+    
+    </head>
+    <body>
+    ...
+    </body>
+</html>
+
+
+````
 Fügen Sie das Skript von oben genau oberhalb des abschließenden </head> tags ein.
+
 
 
 
