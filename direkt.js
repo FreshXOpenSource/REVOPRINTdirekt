@@ -242,7 +242,7 @@ var revoprint = function (options) {
 
 
     var link = document.createElement("link");
-    link.href = "http://10.111.23.42:1111/direkt.css";
+    link.href = "http://revoprint.de/direkt.css";
     link.type = "text/css";
     link.rel = "stylesheet";
     document.getElementsByTagName("head")[0].appendChild(link);
@@ -251,7 +251,7 @@ var revoprint = function (options) {
         title_label: "Bei Revoprint drucken",
         trigger_label: "DRUCKEN",
         position: "left-bottom",
-        iframe_url: "http://10.111.23.42:1111/#!upload/ort/" + options.ort + "/copyshop/" + options.name
+        iframe_url: "http://revoprint.de/#!upload/ort/" + options.ort + "/copyshop/" + options.name
     };
     fm.init(fm_options);
      
