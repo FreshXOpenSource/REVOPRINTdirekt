@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Revoprintdirekt by FreshXOpenSource</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Revoprintdirekt</h1>
+      <h2 class="project-tagline">REVOPRINTdirekt Plugin</h2>
+      <a href="https://github.com/FreshXOpenSource/REVOPRINTdirekt" class="btn">View on GitHub</a>
+      <a href="https://github.com/FreshXOpenSource/REVOPRINTdirekt/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/FreshXOpenSource/REVOPRINTdirekt/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="revoprintdirekt-plugin" class="anchor" href="#revoprintdirekt-plugin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>REVOPRINTdirekt Plugin</h1>
+
+<h1>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description:</h1>
+
+<p>This plug-in allows you to easily add an animatable UI widget which slides from the side of the screen with an embedded iframe to the REVOPRINT printing service.</p>
+
+<h1>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features:</h1>
+
+<ul>
+<li>Using CSS3 Transition for sliding out the feedback widget (jquery used as a fallback for older browsers)</li>
+</ul>
+
+<h1>
+<a id="usage--integration-into-your-copyhop-site" class="anchor" href="#usage--integration-into-your-copyhop-site" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage / Integration into your Copyhop site:</h1>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>http://revoprint.de/direkt.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span>
+    <span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+        <span class="pl-en">jQuery</span>(<span class="pl-c1">document</span>).<span class="pl-en">ready</span>(<span class="pl-k">function</span> () {
+            <span class="pl-en">revoprint</span>({<span class="pl-s"><span class="pl-pds">'</span>ort<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>saarbruecken<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>digitaldruck+pirrot+gmbh<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bgColor<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#009ee3<span class="pl-pds">'</span></span>});
+        });
+    <span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre></div>
+
+<p>Wenn Sie JavaScript-Code in einen bestimmten Bereich einfügen möchten, müssen Sie Ihr HTML-Dokument mit einem Editor öffnen, um den HTML-Code (Quellcode) der Seite einzusehen um die Bereiche 'Head' und 'Body' zu lokalisieren.</p>
+
+<p>Suchen Sie im Quellcode ihrer Seite das HTML-Tag, welches den HEAD-Bereich abschließt. Gleich darunter finden Sie in der Regel das HTML-Tag welches den Beginn des Body-Bereichs darstellt:</p>
+
+<p>
+</p>
+Genau an dieser Stelle ist die Grenze zwischen Head und Body (Kopf und Körper ) Ihres HTML-Dokuments.
+
+<p>Oberhalb des -Tags ist der HEAD-Bereich der Seite.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">html</span>&gt;
+    &lt;<span class="pl-ent">head</span>&gt;
+    ...
+
+    HIER EINFÜGEN
+
+    &lt;/<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">body</span>&gt;
+    ...
+    &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;
+
+</pre></div>
+
+<p>Fügen Sie das Skript von oben genau oberhalb des abschließenden  tags ein.</p>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License:</h1>
+
+<p>Copyright 2013
+Licensed under the MIT License (just like jQuery itself)</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/FreshXOpenSource/REVOPRINTdirekt">Revoprintdirekt</a> is maintained by <a href="https://github.com/FreshXOpenSource">FreshXOpenSource</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
